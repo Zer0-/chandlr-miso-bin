@@ -1,0 +1,42 @@
+:root {
+    --post-illegal-delete-btn-width: 3.5em;
+    --post-illegal-delete-btn-height: 1.5em;
+    --post-illegal-delete-btn-font-size: .8;
+}
+
+.post-illegal-delete-btn {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: .5em;
+    background-color: var(--color-primary-darker);
+    padding: 0 .25em;
+    margin: .5em;
+    width: var(--post-illegal-delete-btn-width);
+    height: var(--post-illegal-delete-btn-height);
+    line-height: var(--post-illegal-delete-btn-height);
+    font-size: calc(var(--post-illegal-delete-btn-font-size) * 1em);
+    color: var(--color-primary);
+    text-align: center;
+    letter-spacing: -0.0625em;
+    font-weight: bold;
+    user-select: none;
+}
+
+.post-illegal-delete-btn:hover {
+    background-color: var(--color-primary-darker-complement);
+    color: var(--color-primary-complement);
+    cursor: pointer;
+    box-shadow: 0 0 0.4em 0.1em var(--color-primary-complement); /* Glow effect */
+}
+
+.post-with-admin {
+    position: relative;
+    padding-right: calc(var(--post-illegal-delete-btn-font-size) * calc(var(--post-illegal-delete-btn-width) + 1em)) !important;
+}
+
+.modal-dialog__content:after {
+    content: "";
+    display: block;
+}
