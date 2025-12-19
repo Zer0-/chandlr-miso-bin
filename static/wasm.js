@@ -411,7 +411,7 @@ function drawCanvas(c) {
 }
 function unmountComponent(c) {
   if (c.onUnmounted)
-    c.onUnmounted(drill(c));
+    c.onUnmounted();
   c.unmount(c.componentId);
 }
 function mountComponent(parent, op, replacing, n, context) {
@@ -431,7 +431,7 @@ function mountComponent(parent, op, replacing, n, context) {
     }
   });
   if (n.onMounted)
-    n.onMounted(drill(n));
+    n.onMounted();
 }
 function create(n, parent, context) {
   createElement(parent, 0 /* APPEND */, null, n, context);
@@ -1029,6 +1029,12 @@ function populateClass(vnode, classes) {
     }
   }
 }
+function updateRef(current, latest) {
+  if (!current.parent) {
+    return;
+  }
+  current.parent.child = latest;
+}
 
 // ts/miso/context/dom.ts
 var eventContext = {
@@ -1205,6 +1211,7 @@ globalThis["miso"] = {
   websocketClose,
   websocketSend,
   undelegate,
+  updateRef,
   populateClass,
   integrityCheck,
   setDrawingContext: function(name) {
